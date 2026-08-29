@@ -1,9 +1,12 @@
 const express = require("express");
+const swaggerUI = require("swagger-ui-express");
+const openapi = require("./openapi.json");
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
+app.use("/docs", swaggerUI.serve, swaggerUI.setup(openapi));
 
 const tasks = [
     { id: 1, title: "Buy groceries", done: false},

@@ -1,0 +1,76 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Task API",
+        "version": "1.0.0",
+        "description": "A CRUD API for managing an in-memory task list."
+    },
+    "servers":[
+        {
+            "url": "http://localhost:3000"
+        }
+    ],
+    "paths":{
+        "/tasks": {
+             "get": {
+                "summary": "List all the tasks",
+                "responses": {
+                    "200": {
+                        "description": "Returns every task in the in-memory task list",
+                        "content":{
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer"
+                                            },
+                                            "title":{
+                                                "type": "string"
+                                            },
+                                            "done": {
+                                                "type": "boolean"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+             },
+            "post": {
+  "summary": "Create a new task",
+  "description": "Creates a task with a title and sets done to false.",
+  "requestBody": {
+    "required": true,
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "object",
+          "required": ["title"],
+          "properties": {
+            "title": {
+              "type": "string",
+              "example": "Buy milk"
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "201": {
+      "description": "Task created successfully"
+    },
+    "400": {
+      "description": "Title is missing or empty"
+    }
+  }
+}
+
+        }
+    }
+}
