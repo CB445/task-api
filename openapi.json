@@ -71,6 +71,67 @@
   }
 }
 
+        },
+        "/tasks/{id}":{
+            "parameters":[
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "The ID of the task",
+                    "schema":{
+                        "type": "integer"
+                    }
+                }
+            ],
+            "get":{
+                "summary": "Get a task by ID",
+                "responses":{
+                    "200": {
+                        "description": "Returns the matching task"
+                    },
+                    "404": {
+                        "description": "Task not found"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update a task by ID",
+                "description": "Updates the title, done status, or both.",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Buy groceries"
+                                    },
+                                    "done": {
+                                        "type": "boolean",
+                                        "example": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Task updated successfully"
+                    },
+                    "400": {
+                        "description": "Invalid or empty update"
+                    },
+                    "404": {
+                        "description": "Task not found"
+                    }
+                }
+            }
+                
         }
     }
 }
+
